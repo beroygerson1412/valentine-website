@@ -3,25 +3,26 @@ const yesBtn = document.getElementById('yesBtn');
 const noBtn = document.getElementById('noBtn');
 const overlay = document.getElementById('overlay');
 
-// Function to move "No" button to random position
+// Function to move "No" button to random position within white content box
 function moveNoButton() {
-    // Get viewport dimensions
-    const viewportWidth = window.innerWidth;
-    const viewportHeight = window.innerHeight;
+    // Get the white content box
+    const contentBox = document.querySelector('.content');
+    const contentRect = contentBox.getBoundingClientRect();
     
     // Get button dimensions
     const btnWidth = noBtn.offsetWidth;
     const btnHeight = noBtn.offsetHeight;
     
-    // Calculate maximum positions to keep button within viewport
-    const maxX = viewportWidth - btnWidth - 20; // 20px padding from edge
-    const maxY = viewportHeight - btnHeight - 20;
+    // Calculate available space within content box (with padding)
+    const padding = 20;
+    const maxX = contentRect.width - btnWidth - padding;
+    const maxY = contentRect.height - btnHeight - padding;
     
-    // Generate random positions (minimum 20px from edges)
-    const randomX = Math.max(20, Math.floor(Math.random() * maxX));
-    const randomY = Math.max(20, Math.floor(Math.random() * maxY));
+    // Generate random positions within the content box
+    const randomX = Math.max(padding, Math.floor(Math.random() * maxX));
+    const randomY = Math.max(padding, Math.floor(Math.random() * maxY));
     
-    // Apply new position
+    // Apply new position relative to content box
     noBtn.style.left = randomX + 'px';
     noBtn.style.top = randomY + 'px';
 }
@@ -90,10 +91,15 @@ yesBtn.addEventListener('click', showOverlay);
 
 // Optional: Handle window resize to reposition button if needed
 window.addEventListener('resize', () => {
-    // Check if button is out of bounds after resize
-    const btnRect = noBtn.getBoundingClientRect();
-    
-    if (btnRect.right > window.innerWidth || btnRect.bottom > window.innerHeight) {
-        moveNoButton();
+    // Only reposition if button has been moved (is absolute)
+    if (noButtonMoved) {
+        const contentBox = document.querySelector('.content');
+        const contentRect = contentBox.getBoundingClientRect();
+        const btnRect = noBtn.getBoundingClientRect();
+        
+        // Check if button is out of content box bounds after resize
+        if (btnRect.right > contentRect.right || btnRect.bottom > contentRect.bottom) {
+            moveNoButton();
+        }
     }
 });
