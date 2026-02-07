@@ -93,6 +93,7 @@ body {
     backdrop-filter: blur(10px);
     animation: slideIn 0.8s ease-out;
     max-width: 500px;
+    position: relative;
 }
 
 @keyframes slideIn {
