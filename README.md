@@ -2,6 +2,9 @@
 
 A cute and playful Valentine's Day website with an interactive "Will you be my Valentine?" question. The "No" button playfully runs away when you try to hover over it!
 
+## 🚀 Live Demo
+[Valentine Site](https://beroygerson1412.github.io/valentine-website/)
+
 ## ✨ Features
 
 - **Playful "No" Button**: Tries to escape when you hover over it, moving to random positions on the screen
@@ -82,6 +85,8 @@ Perfect for:
 
 ## 📱 Browser Compatibility
 
+PS: The website might not show its desired function on mobile browsers cause it's designed to work on mouse cursors.
+
 Works on all modern browsers:
 
 - ✅ Chrome
@@ -105,4 +110,3 @@ Created with pure HTML, CSS, and JavaScript. No dependencies, no build tools, ju
 
 **Happy Valentine's Day! 🌹**
 
-Page Link: https://beroygerson1412.github.io/valentine-website/
